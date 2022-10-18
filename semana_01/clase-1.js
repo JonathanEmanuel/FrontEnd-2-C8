@@ -2,10 +2,15 @@
 /*                                  FUNCION 1                                 */
 /* -------------------------------------------------------------------------- */
 function iniciarJuego(){
+    let nombre;
+    let apellido; 
     // Saludo y solicito el nombre
     alert('Bienvendio Al Juego de Piedra papel o tijera');
-    let nombre = prompt('Ingrese su nombre');
-
+    do {
+        nombre = prompt('Ingrese su nombre');
+    } while( nombre == null || nombre.length < 3 )
+    
+    nombre = nombre.toUpperCase();
     alert(' Hola ' + nombre + '!'  );
 
     return nombre;
