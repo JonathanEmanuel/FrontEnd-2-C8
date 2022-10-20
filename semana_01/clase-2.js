@@ -7,10 +7,11 @@ function pedirJugada(){
     let eleccion;
 
     do {
-        eleccion =  parseInt( prompt('Ingrese 1.Piedra  2.Papel 3.Tijera') );
+        eleccion =  parseInt( prompt('Ingrese: \n 1.Piedra \n 2.Papel \n 3.Tijera') );
 
     } while(  isNaN(eleccion) || eleccion < 1 || eleccion > 3  );
 
+    console.log('Juego con ' + eleccion );
     // Finalmente retornamos la eleccion
     return eleccion
 }
@@ -57,7 +58,7 @@ function compararJugadas(){
     return resultado;
 }
 
-const resultadoPartida = compararJugadas();
+//const resultadoPartida = compararJugadas();
 
 /* -------------------------------------------------------------------------- */
 /*                          CONSIGNA MESA DE TRABAJO                          */

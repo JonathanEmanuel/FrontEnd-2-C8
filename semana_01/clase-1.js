@@ -3,9 +3,8 @@
 /* -------------------------------------------------------------------------- */
 function iniciarJuego(){
     let nombre;
-    let apellido; 
     // Saludo y solicito el nombre
-    alert('Bienvendio Al Juego de Piedra papel o tijera');
+    alert('Bienvendio al Juego de Piedra Papel o Tijera');
     do {
         nombre = prompt('Ingrese su nombre');
     } while( nombre == null || nombre.length < 3 )
@@ -17,7 +16,7 @@ function iniciarJuego(){
 }
 
 // Creamos una variable Global con el nombre del jugador
-const nombreJugador = iniciarJuego();
+//const nombreJugador = iniciarJuego();
 
 /* -------------------------------------------------------------------------- */
 /*                       CONSIGNA DE LA MESA DE TRABAJO                       */
