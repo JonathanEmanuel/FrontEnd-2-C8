@@ -98,3 +98,21 @@ footer {
     color: white;
     text-align: center;
 }
+
+/* -------------------------------- Modo dark ------------------------------- */
+
+.dark{
+    background-color: var(--oscuro);
+}
+
+.dark header {
+    background-color: var(--celeste-oscuro);
+}
+
+.dark main {
+    background-color: var(--oscuro);
+}
+
+.dark .info {
+    color: bisque;
+}
