@@ -92,7 +92,8 @@ function mostrarDatosEnPerfil() {
 // desarrollar la función 👇
 
 }
-//mostrarDatosEnPerfil();
+
 
 obtenerUsuario();
 renderizarAlbumes(albumesFamosos);
+//mostrarDatosEnPerfil();
