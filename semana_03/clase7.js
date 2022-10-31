@@ -37,24 +37,42 @@ const albumesFamosos = [
         like: false
     }
 ];
+const nombreUsuario = document.querySelector('#nombreUsuario');
+const covers = document.querySelector('.covers');
 
+//console.log( nombreUsuario, covers);
 
 
 /* -------------------------------------------------------------------------- */
 /*                  [1] FUNCION: captar el nombre de usuario                  */
 /* -------------------------------------------------------------------------- */
 function obtenerUsuario() {
+    let usuario = '';
+    do {
+        usuario = prompt('Ingrese su nombre');
 
+    } while( usuario === null || usuario === '' || usuario.length < 3 ||  !isNaN(usuario) )
+    nombreUsuario.innerText = usuario;
 }
-// obtenerUsuario();
 
 /* -------------------------------------------------------------------------- */
 /*                [2] FUNCION: Renderizar tarjetas del almbumes               */
 /* -------------------------------------------------------------------------- */
 //forEach, template strings, innerHTML
 function renderizarAlbumes(listado) {
+    let html = '';
+    listado.forEach(album => {
+        //console.log(album);
+        html +=  // html
+            `<li data-id="${album.id}">
+                <img src="${album.imagen}" alt="${album.nombre}">
+                <p> ${ album.nombre } </p>          
+                <i id="${album.id}" class="fa fa-heart ${ album.like == true ? 'favorito' : '' }"></i>
+            </li>`;
+    });
 
-
+    covers.innerHTML = html;
+    
 };
 
 
@@ -75,3 +93,6 @@ function mostrarDatosEnPerfil() {
 
 }
 //mostrarDatosEnPerfil();
+
+obtenerUsuario();
+renderizarAlbumes(albumesFamosos);
