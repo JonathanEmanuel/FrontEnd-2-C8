@@ -4,13 +4,40 @@
 // - Buscar el album por id en el array 
 // - Cambiar el estado del like
 // - Volver a renderizar
+// Agregar Lisent a los botones
 function marcarFavorito() {
-   
+    const botonesLikes = document.querySelectorAll('.fa-heart');
+
+    //console.log(botonesLikes);
+    // No se puede agregar un EventListener sobre una lista. Para eso lo recorro
+    // botonesLikes.addEventListener
+    
+    botonesLikes.forEach(boton => {
+        boton.addEventListener('click', function(){
+            // Obtendo el Id
+            console.log(this.id);
+            modificarLike(this);
+        })
+    });
+
 
 }
 marcarFavorito()
+// Recorre el array de albumesFamosos y busco el id. Modifica el like
+function modificarLike(obj){
 
+    albumesFamosos.forEach(album => {
+        if( album.id == obj.id){
+            album.like = !album.like;
+            obj.classList.toggle('favorito');
+        }
 
+    });
+
+    //renderizarAlbumes(albumesFamosos);
+    // Luego agrego los EventListener
+    // marcarFavorito();
+}
 
 /* ----------------------------- MESA DE TRABAJO ---------------------------- */
 /* -------------------------------------------------------------------------- */
