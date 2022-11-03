@@ -94,6 +94,6 @@ function mostrarDatosEnPerfil() {
 }
 
 
-obtenerUsuario();
+//obtenerUsuario();
 renderizarAlbumes(albumesFamosos);
 //mostrarDatosEnPerfil();

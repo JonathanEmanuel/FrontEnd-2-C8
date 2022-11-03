@@ -1,3 +1,5 @@
+const cantAlbums = document.querySelector('#cant-albums');
+const cantFavoritos = document.querySelector('#cant-favoritos');
 /* -------------------------------------------------------------------------- */
 /*                        [4] FUNCION: Marcar favorito                        */
 /* -------------------------------------------------------------------------- */
@@ -56,7 +58,20 @@ function modificarLike(obj){
 
 function eliminarAlbum() {
     // desarrollar la función 👇
-
-
+    let nombre = prompt('Ingrese el nombre del album');
+    let pos = albumesFamosos.findIndex( item => item.nombre == nombre );
+    console.log(pos);
+    if( pos != -1){
+        albumesFamosos.splice(pos, 1);
+    }
 }
-eliminarAlbum();
+//eliminarAlbum();
+
+document.addEventListener('keydown_', function(evento){
+    //console.log(evento);
+    let tecla = evento.key;
+    if( tecla.toLowerCase() == 'f'){
+        console.log(tecla);
+        eliminarAlbum();
+    }
+})
