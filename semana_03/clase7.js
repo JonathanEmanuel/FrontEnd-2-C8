@@ -63,16 +63,17 @@ function renderizarAlbumes(listado) {
     let html = '';
     listado.forEach(album => {
         //console.log(album);
-        html +=  // html
+        html = // html
             `<li data-id="${album.id}">
-                <img src="${album.imagen}" alt="${album.nombre}">
-                <p> ${ album.nombre } </p>          
+                <img src=" ${album.imagen} " alt="${album.nombre}">
+                <p>${album.nombre} </p>          
                 <i id="${album.id}" class="fa fa-heart ${ album.like == true ? 'favorito' : '' }"></i>
             </li>`;
-    });
 
-    covers.innerHTML = html;
-    
+        console.log(html);
+        covers.innerHTML =  covers.innerHTML + html;
+   
+    }); 
 };
 
 
