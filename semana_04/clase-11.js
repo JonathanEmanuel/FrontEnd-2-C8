@@ -1,15 +1,59 @@
+const formulario = document.querySelector('form');
+const inputNombre = document.querySelector('#nombre');
+const inputPass = document.querySelector('#pass');
+const inputTel = document.querySelector('#tel');
+const inputsHobbies = document.querySelectorAll('[name=hobbies]');
+const inputsNacionalidades = document.querySelectorAll('[name=nacionalidad]');
+
+//console.log(nombre, pass, tel, hobbies, nacionalidad )
+
+
 /* -------------------------------------------------------------------------- */
 /*               [1] FUNCION: capturar los datos del formulario               */
 /* -------------------------------------------------------------------------- */
 function capturarDatosFormulario() {
+    /* ------------ leer los datos y retornar un objeto con los datos ----------- */
+    const objeto = {
+        nombre: '',
+        password: '',
+        tel: '',
+        hobbies: [],
+        nacionalidad: ''
+    }
 
+    /* --------------------------- Capturo los valores -------------------------- */
+    
+    objeto.nombre = inputNombre.value;
+    objeto.password = inputPass.value;
+    objeto.tel = inputTel.value
+
+    inputsHobbies.forEach(input => {
+        if( input.checked == true){
+            objeto.hobbies.push( input.id )
+        }
+    });
+
+    inputsNacionalidades.forEach(input => {
+        if( input.checked ) {
+            objeto.nacionalidad = input.id
+        }
+    });
+
+    return objeto;
 };
 
 /* -------------------------------------------------------------------------- */
 /*                 [2] FUNCION: escuchamos el submit del form                 */
 /* -------------------------------------------------------------------------- */
 
+formulario.addEventListener('submit', function(evento){
+    evento.preventDefault();
+    let usuario = capturarDatosFormulario();
+    console.table(usuario);
+    const listaErrores = validarInformacion(usuario);
+    console.log(listaErrores);
 
+})
 
 
 
