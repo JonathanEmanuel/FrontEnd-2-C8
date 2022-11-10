@@ -49,10 +49,11 @@ function capturarDatosFormulario() {
 formulario.addEventListener('submit', function(evento){
     evento.preventDefault();
     let usuario = capturarDatosFormulario();
-    console.table(usuario);
+    //console.table(usuario);
     const listaErrores = validarInformacion(usuario);
-    console.log(listaErrores);
+    //console.log(listaErrores);
 
+    renderizarErrores(listaErrores);
 })
 
 
@@ -73,6 +74,24 @@ formulario.addEventListener('submit', function(evento){
 function validarInformacion(usuario) {
     let errores = [];
     // 👇 desarrollar aqui la funcion
+    usuario.nombre = usuario.nombre.trim();
+    usuario.password = usuario.password.trim();
+    usuario.tel = usuario.tel.trim();
+    if(!/^[a-zñáéíóú]{3,}$/gi.test(usuario.nombre)){
+        errores.push("El nombre debe tener al menos 3 caracteres.");
+    }
+    if(!/^[\w@#$.-]{6,}$/gi.test(usuario.password)){
+        errores.push("La contraseña debe tener al menos 6 caracteres, entre letras y símbolos.");
+    }
+    if(!/^[\d]{10,15}$/gi.test(usuario.tel)){
+        errores.push("No es un teléfono válido.");
+    }
+    if(usuario.hobbies.length >4){
+        errores.push("Sólo es posible seleccionar 4 hobbies.");
+    }
+    if(usuario.nacionalidad === ""){
+        errores.push("Debe seleccionar una nacionalidad.");
+    }
 
     return errores;
 }
