@@ -54,6 +54,7 @@ formulario.addEventListener('submit', function(evento){
     //console.log(listaErrores);
 
     renderizarErrores(listaErrores);
+    mostrarMensajeExito(listaErrores);
 })
 
 
