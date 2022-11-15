@@ -129,10 +129,12 @@ function validarTerminos(verificacion){
 formulario.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
-    // LO IMPLEMENTAMOS LA PROXIMA
+    // LO IMPLEMENTAMOS LA PROXIMA,PROXIMA...
     if ( !estadoErroresOK.email && !estadoErroresOK.password && !estadoErroresOK.rol && !estadoErroresOK.terminos) {
         alert("Pasó todas las validaciones!");
-        // ☝ luego reemplazar esto por la funcion de éxito
+        let cadena = JSON.stringify(estadoUsuario);
+        localStorage.setItem('usuario', cadena );
+        
     }else {
         console.error('No paso la validación')
 
