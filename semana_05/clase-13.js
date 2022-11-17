@@ -28,6 +28,7 @@ const passwordError = document.querySelector('#passwordError');
 const rolError = document.querySelector('#rolError');
 const terminosError = document.querySelector('#terminosError');
 
+chequearUsuarioValido();
 
 /* -------------------------------------------------------------------------- */
 /*                   [1] FUNCION: mostrar errores al usuario                  */
