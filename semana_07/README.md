@@ -16,7 +16,7 @@ Link con la documentación de los endpoints de la API y su funcionamiento:
     
 
 ## Requerimientos funcionales en pantalla de Login
-- [ ] FUNCIÓN 1: Escuchar el submit y preparar los datos para elenvío.
+- [ ] FUNCIÓN 1: Escuchar el submit y preparar los datos para el envío.
 - [ ] FUNCIÓN 2: Realizar la petición a la API para ingresar si los datos del usuario son correctos.
 
 ## Requerimientos funcionales en pantalla de Signup
