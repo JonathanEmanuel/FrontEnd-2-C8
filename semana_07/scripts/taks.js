@@ -12,6 +12,7 @@ window.addEventListener('load', function () {
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const userName = document.querySelector('.user-info p')
   const btnCerrarSesion = document.querySelector('#closeApp');
+  const formCrearTarea = document.querySelector('.nueva-tarea');
 
   console.log(userName, btnCerrarSesion);
 
@@ -91,7 +92,7 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
 
   formCrearTarea.addEventListener('submit', function (event) {
-    
+    console.log('Evento del form');
 
 
 
