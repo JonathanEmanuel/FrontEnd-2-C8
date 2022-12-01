@@ -108,10 +108,7 @@ window.addEventListener('load', function () {
   /*                  FUNCIÓN 5 - Renderizar tareas en pantalla                 */
   /* -------------------------------------------------------------------------- */
   function renderizarTareas(listado) {
-    listado[0].completed = !listado[0].completed;
-
-
-
+  
     console.log(listado)
 
     console.log('tasks', listado);
