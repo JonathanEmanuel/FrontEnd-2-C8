@@ -48,11 +48,15 @@ window.addEventListener('load', function () {
       }
     }
 
-    fetch(endPoint, config).then( response => {  return response.json() })
-    .then( respJSON => {
-      //console.log( respJSON);
-      user = respJSON;
-      userName.textContent = respJSON.firstName;
+    fetch(endPoint, config)
+    .then( response => {  
+      console.info('Response',response)  
+      return response.json()
+     })
+    .then( json => {
+      console.log('Algo legible', json);
+      user = json;
+      userName.textContent = json.firstName;
 
     }).catch( error => {
       alert('upss tenemos un error :(');
