@@ -28,11 +28,37 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
   // Elimina el jwt y voy al index.html
   btnCerrarSesion.addEventListener('click', function () {
-    if( confirm('¿Desar Salir de la APP?')){
+
+
+
+    Swal.fire({
+      title: '¡Desea salir de la app?',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Salir',
+      cancelButtonText: 'Cancelar', 
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+
+      console.log(result);
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        localStorage.clear();
+        location.replace('index.html');
+
+      } else if (result.isDenied) {
+        
+      }
+    })
+
+
+
+
+   /*  if( confirm('¿Desar Salir de la APP?')){
       localStorage.clear();
       location.replace('index.html');
     }
-
+ */
   });
 
   /* -------------------------------------------------------------------------- */
@@ -88,11 +114,17 @@ window.addEventListener('load', function () {
       renderizarTareas(respJSON);
 
     }).catch( error => {
-      alert('upss tenemos un error la consultar las tareas :(');
+
+      Swal.fire(
+        'To Do',
+        'upss tenemos un error la consultar las tareas :(',
+        'error'
+      );
+      //alert('upss tenemos un error la consultar las tareas :(');
       console.error(error);
 
     }).finally( () => {
-      ocultarLoading();
+        ocultarLoading();
     });
 
   };
@@ -155,7 +187,7 @@ window.addEventListener('load', function () {
 
         if( task.completed == false ){
           tareasPendientes.innerHTML +=  // html
-            `<li class="tarea">
+            `<li class="tarea" data-aos="flip-up">
               <button type="button" title="Completar tarea" class="change" id="${task.id}"><i class="fa-regular fa-circle"></i></button>
               <div class="descripcion">
                 <p class="nombre">${task.description}</p>
@@ -164,7 +196,7 @@ window.addEventListener('load', function () {
             </li>`;
         } else {
           tareasTerminadas.innerHTML += // html
-              `<li class="tarea">
+              `<li class="tarea" data-aos="zoom-in">
                 <div class="hecha">
                   <i class="fa-regular fa-circle-check"></i>
                 </div>
@@ -191,6 +223,19 @@ window.addEventListener('load', function () {
       })
     });
 
+    // Selecciono todos los botones de cambio de estado (check verde) y agrego el listener
+    const btnCompleted = document.querySelectorAll('.change');
+        
+
+    btnCompleted.forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        
+        //llamo a la funcion de cambio de estado enviando el elemento HTML 
+        // (boton completo) en el que se hizo click
+        botonesCambioEstado(e.target);
+        
+      })
+    });
 
 
     //botonBorrarTarea();
@@ -201,9 +246,46 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
   /*                  FUNCIÓN 6 - Cambiar estado de tarea [PUT]                 */
   /* -------------------------------------------------------------------------- */
-  function botonesCambioEstado() {
+  function botonesCambioEstado(boton) {
     
+    // preparo los datos para el PUT
+    let data;
+    if(boton.classList.contains('incompleta')){
+      // cambiar completed = false
+      data = {"completed" : false}
+    }else{
+      // cambiar completed = true
+      data = {"completed" : true}
+    }
     
+
+    const endPoint = `${url}/tasks/${boton.id}`;
+    const config = {
+      method: 'PUT',
+      headers: {
+        authorization: token,
+        'Content-type': 'application/json'
+
+      },
+      body: JSON.stringify(data),
+    }
+
+    fetch( endPoint, config ).then( response => {
+        if(  response.ok == false){
+          alert('Ups algo salio mal');
+          return;
+        }
+        response.json();
+      })
+      .then( resJSON => {
+        // si todo salió bien llamo a consultar tareas para que vuelva a renderizar todas las tareas
+        consultarTareas();
+      })
+      .catch( error => {
+        console.error('ERROR' , error);
+      })
+
+
 
 
 
@@ -214,34 +296,59 @@ window.addEventListener('load', function () {
   /*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
   /* -------------------------------------------------------------------------- */
   function botonBorrarTarea(id) {
-    console.log('eliminado tarea', id);
+
+    Swal.fire({
+      title: '¿Confirma eliminar la tarea?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar', 
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+
+      console.log(result);
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+  
+        console.log('eliminado tarea', id);
 
 
-    const endPoint = `${url}/tasks/${id}`;
-    const config = {
-      method: 'DELETE',
-      headers: {
-        authorization: token,
-        'Content-type': 'application/json'
-
-      }
-    }
-
-    fetch( endPoint, config ).then( response => {
-        if(  response.ok == false){
-          alert('Ups algo salio mal');
-          return;
+        const endPoint = `${url}/tasks/${id}`;
+        const config = {
+          method: 'DELETE',
+          headers: {
+            authorization: token,
+            'Content-type': 'application/json'
+    
+          }
         }
-        console.log(response);
-        response.json();
-      })
-      .then( resJSON => {
-        console.log(resJSON);
-        consultarTareas();
-      })
-      .catch( error => {
-        console.error('ERROR' , error);
-      })
+    
+        fetch( endPoint, config ).then( response => {
+            if(  response.ok == false){
+              alert('Ups algo salio mal');
+              return;
+            }
+            console.log(response);
+            response.json();
+          })
+          .then( resJSON => {
+            console.log(resJSON);
+            consultarTareas();
+          })
+          .catch( error => {
+            console.error('ERROR' , error);
+          })
+
+
+      } else if (result.isDenied) {
+        
+      }
+    })
+
+
+
+
+    
 
   };
 

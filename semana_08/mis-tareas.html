@@ -12,6 +12,8 @@
   <!-- ----------------------------- estilos CSS ----------------------------- -->
   <link rel="stylesheet" href="css/tasksStyles.css">
   <link rel="stylesheet" href="css/loading.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css" />
   <!-- ------------------- libreria de iconos Fontawesome -------------------- -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -32,7 +34,7 @@
   </div>
   <!-- cabecera con barra de navegación -->
   <header class="container">
-    <nav>
+    <nav data-aos="fade-left">
       <h1>To-Do App</h1>
 
       <div class="user-info">
@@ -85,6 +87,11 @@
     <img src="assets/DH_Logo_White.png" alt="">
     <p>| Frontend II Team ♥</p>
   </footer>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>
 
 </html>
